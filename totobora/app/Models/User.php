@@ -16,7 +16,16 @@ class User extends Authenticatable
     /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
 
-    protected $fillable = ['name', 'first_name', 'last_name', 'email', 'password', 'role', 'facility_id'];
+    protected $fillable = [
+        'name', 
+        'first_name', 
+        'last_name', 
+        'email', 
+        'password', 
+        'role', 
+        'facility_id',
+        'is_active'
+    ];
 
 
     /**
@@ -29,6 +38,7 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'is_active' => 'boolean',
         ];
     }
 
@@ -41,5 +51,12 @@ class User extends Authenticatable
     public function isHealthcareWorker(): bool {
         return $this->role === 'healthcare_worker';
     }
-    
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', true);
+    }
+    public function scopeHealthcareWorkers($query)
+    {
+        return $query->where('role', 'healthcare_worker');
+    }
 }

@@ -9,6 +9,7 @@ use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\GrowthController;
 use App\Http\Controllers\ReminderController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', fn() => redirect()->route('login'));
 
@@ -60,6 +61,17 @@ Route::middleware('auth')->group(function () {
     // Reports (admin only)
     Route::middleware('role:admin')->group(function () {
         Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
+    });
+
+    // User management — admin only
+    Route::middleware('role:admin')->group(function () {
+        Route::get('/users',             [UserController::class, 'index'])->name('users.index');
+        Route::get('/users/create',      [UserController::class, 'create'])->name('users.create');
+        Route::post('/users',            [UserController::class, 'store'])->name('users.store');
+        Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+        Route::put('/users/{user}',      [UserController::class, 'update'])->name('users.update');
+        Route::patch('/users/{user}/deactivate', [UserController::class, 'deactivate'])->name('users.deactivate');
+        Route::patch('/users/{user}/reactivate', [UserController::class, 'reactivate'])->name('users.reactivate');
     });
 
 });

@@ -60,6 +60,12 @@
             </a>
 
             @if(Auth::user()->role === 'admin')
+            <a href="{{ route('users.index') }}"
+                class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm
+                        {{ request()->routeIs('users.*') ? 'bg-green-50 text-green-700 font-medium' : 'text-gray-600 hover:bg-gray-50' }}">
+                👥 Users
+            </a>
+            
             <a href="{{ route('reports.index') }}"
                 class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm
                         {{ request()->routeIs('reports.*') ? 'bg-green-50 text-green-700 font-medium' : 'text-gray-600 hover:bg-gray-50' }}">

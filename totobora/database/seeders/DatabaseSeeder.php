@@ -33,9 +33,9 @@ class DatabaseSeeder extends Seeder
 
         // admin user
         User::create([
-            'name'        => 'System Admin',
-            'first_name'  => 'System',
-            'last_name'   => 'Admin',
+            'name'        => 'T. Mkuu',
+            'first_name'  => 'Tom',
+            'last_name'   => 'Mkuu',
             'email'       => 'admin@totobora.co.ke',
             'password'    => Hash::make('Admin@1234'),
             'role'        => 'admin',
