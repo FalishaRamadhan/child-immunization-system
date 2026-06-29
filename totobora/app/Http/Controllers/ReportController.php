@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+// Admin-only reporting dashboard with immunization coverage stats and defaulter list
 
 use App\Models\Child;
 use App\Models\ImmunizationRecord;
