@@ -22,7 +22,6 @@ class ChildController extends Controller
     /*
     |--------------------------------------------------------------------------
     | Caregiver can only see their own child/children
-    |--------------------------------------------------------------------------
     */
 
     if ($user->role === 'caregiver') {
