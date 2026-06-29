@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+// Records vaccinations against Kenya MOH/WHO schedule with automatic next dose calculation
 
 use App\Models\Child;
 use App\Models\ImmunizationRecord;
