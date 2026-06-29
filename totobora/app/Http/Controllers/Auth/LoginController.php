@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
+// Handles role-based authentication, login, logout and session management for TotoBora
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
