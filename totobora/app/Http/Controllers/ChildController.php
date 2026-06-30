@@ -54,13 +54,13 @@ class ChildController extends Controller
     public function store(Request $request)
 {
     $validated = $request->validate([
-        'first_name'          => ['required', 'string', 'max:50'],
-        'last_name'           => ['required', 'string', 'max:50'],
+        'first_name'          => ['required', 'string', 'max:15'],
+        'last_name'           => ['required', 'string', 'max:15'],
         'date_of_birth'       => ['required', 'date', 'before:today'],
         'gender'              => ['required', 'in:Male,Female'],
         'birth_weight'        => ['nullable', 'numeric', 'min:0.5', 'max:10'],
-        'guardian_first_name' => ['required', 'string', 'max:50'],
-        'guardian_last_name'  => ['required', 'string', 'max:50'],
+        'guardian_first_name' => ['required', 'string', 'max:15'],
+        'guardian_last_name'  => ['required', 'string', 'max:15'],
         'phone_number'        => ['required', 'string', 'max:15'],
         'email'               => ['nullable', 'email', 'max:100'],
         'relationship'        => ['required', 'in:Mother,Father,Grandparent,Aunt/Uncle,Sibling,Other'],
@@ -88,12 +88,15 @@ class ChildController extends Controller
             'unique_child' => 'CH-' . str_pad($child->child_id, 5, '0', STR_PAD_LEFT),
         ]);
 
+        // Check if guardian with this phone already exists
+        $existingGuardian = Guardian::where('phone_number', $validated['phone_number'])->first();
+
         Guardian::create([
             'child_id'     => $child->child_id,
-            'first_name'   => $validated['guardian_first_name'],
-            'last_name'    => $validated['guardian_last_name'],
+            'first_name'   => $existingGuardian->first_name ?? $validated['guardian_first_name'],
+            'last_name'    => $existingGuardian->last_name  ?? $validated['guardian_last_name'],
             'phone_number' => $validated['phone_number'],
-            'email'        => $validated['email'],
+            'email'        => $existingGuardian->email       ?? $validated['email'] ?? null,
             'relationship' => $validated['relationship'],
         ]);
     });
@@ -127,8 +130,8 @@ class ChildController extends Controller
         $this->authorizeAccess($child);
 
         $validated = $request->validate([
-            'first_name'    => ['required', 'string', 'max:50'],
-            'last_name'     => ['required', 'string', 'max:50'],
+            'first_name'    => ['required', 'string', 'max:15'],
+            'last_name'     => ['required', 'string', 'max:15'],
             'date_of_birth' => ['required', 'date', 'before:today'],
             'gender'        => ['required', 'in:Male,Female'],
             'birth_weight'  => ['nullable', 'numeric', 'min:0.5', 'max:10'],
