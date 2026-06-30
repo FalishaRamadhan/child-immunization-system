@@ -1,8 +1,4 @@
-# TotoBora
-
-TotoBora is a web-based child immunization and growth monitoring system designed to improve continuity of pediatric healthcare in resource-constrained healthcare facilities.
-
-The platform centralizes child health records, tracks immunization schedules, monitors growth indicators such as height and weight, and provides automated reminders for upcoming or missed vaccinations.
+# TotoBora: A Web-Based Child Immunization and Growth Monitoring System for Improving Continuity of Care in Resource-Constrained Healthcare Facilities
 
 ## Problem Statement
 
@@ -94,81 +90,24 @@ Specific objectives include:
 
 ---
 
-## System Architecture
-
-TotoBora follows a three-layer architecture:
-
-```text
-Presentation Layer (UI)
-        ↓
-Application Logic Layer (Laravel)
-        ↓
-Database Layer (MySQL)
-```
-
-The system uses an object-oriented and MVC-based architecture for scalability and maintainability.
-
----
-
 ## Core Modules
+### Login
+<img width="344" height="383" alt="Screenshot 2026-06-29 122804" src="https://github.com/user-attachments/assets/cd4ec4d6-236a-411f-955d-663398bb6494" />
 
-### 1. Child Management Module
-Handles:
-- Child registration
-- Guardian information
-- Child profile management
+### Dashboard
+<img width="959" height="284" alt="Screenshot 2026-06-29 122839" src="https://github.com/user-attachments/assets/1d8f84e1-4eb3-4900-8484-0bf25520096b" />
 
-### 2. Immunization Module
-Handles:
-- Vaccine scheduling
-- Immunization records
-- Follow-up tracking
+### Children records
+<img width="958" height="397" alt="Screenshot 2026-06-29 122855" src="https://github.com/user-attachments/assets/a18e8fc8-e1a3-441a-95f0-7b0db78b4760" />
 
-### 3. Growth Monitoring Module
-Handles:
-- Height tracking
-- Weight tracking
-- Growth trend monitoring
+### Child Profile
+<img width="958" height="307" alt="Screenshot 2026-06-29 123035" src="https://github.com/user-attachments/assets/d9bdf19e-3651-4170-b086-2eeaa76e9e1e" />
 
-### 4. Reminder Module
-Handles:
-- SMS notifications
-- Missed appointment alerts
-- Caregiver engagement
+### Reminders
+<img width="959" height="317" alt="Screenshot 2026-06-29 123054" src="https://github.com/user-attachments/assets/6abfa04f-671b-4286-b585-9fb5a178807f" />
 
-### 5. Authentication Module
-Handles:
-- Login/logout
-- Role management
-- Secure system access
-
-### 6. Reporting Module
-Handles:
-- Growth summaries
-- Vaccination reports
-- Follow-up monitoring
-
----
-
-## Intended Users
-
-### Healthcare Workers
-Can:
-- Register children
-- Record vaccinations
-- Update growth measurements
-- Generate reports
-
-### Administrators
-Can:
-- Manage users
-- Configure system settings
-- Monitor system usage
-
-### Caregivers / Parents
-Can:
-- Receive appointment reminders
-- Stay informed on immunization schedules
+### Reports
+<img width="946" height="473" alt="image" src="https://github.com/user-attachments/assets/118a4fe2-65eb-43e9-abd5-f6dc91fbc210" />
 
 ---
 
@@ -257,6 +196,71 @@ Testing includes:
 
 ---
 
+## Usage Instructions
+### Administrator
+1. Log in to the system.
+2. Manage healthcare worker accounts.
+3. Configure system settings where applicable.
+4. Monitor registered children, appointments, and reports.
+5. Manage role-based access permissions.
+
+### Healthcare Worker
+1. Log in using authorized credentials.
+2. Register a child and enter guardian details.
+3. Record administered vaccines.
+4. Add height and weight measurements.
+5. Generate immunization and growth reports.
+6. Trigger or manage SMS reminders where applicable.
+
+### Caregiver / Parent
+Caregivers do not directly manage the system. They receive SMS reminders for:
+> Upcoming vaccination appointments
+> Missed immunization appointments
+
+---
+## Folder Structure
+
+totobora/
+├── app/
+│   ├── Http/
+│   ├── Models/
+│   ├── Providers/
+│   └── Services/
+├── config/
+├── database/
+│   ├── migrations/
+│   └── seeders/
+├── public/
+├── resources/
+│   ├── css/
+│   ├── js/
+│   └── views/
+├── routes/
+├── storage/
+├── tests/
+├── artisan
+├── composer.json
+├── package.json
+└── vite.config.js
+
+---
+
+## API Documentation
+
+TotoBora is primarily a web-based Laravel application. However, it uses an external API integration through Africa’s Talking for SMS notifications.
+
+Provider: Africa’s Talking
+Purpose: Sending SMS notifications to caregivers
+Authentication: API Key
+Usage: Appointment reminders and missed vaccination alerts
+SMS Reminder Use Cases
+
+The Africa’s Talking SMS API is used when:
+> A child has an upcoming vaccination appointment
+> A child has missed a scheduled immunization visit
+
+---
+
 ## Scope
 
 TotoBora focuses on:
@@ -273,16 +277,8 @@ The system does **not** include:
 ❌ Hospital billing  
 ❌ Pharmacy management  
 ❌ AI diagnosis  
-❌ National HIS integration  
-❌ Mobile application support
-
----
-
-## Project Status
-
-🚧 In Development
-
-This project is currently under development as an undergraduate Informatics and Computer Science project.
+❌ National health information systems integration  
+❌ Management of healthcare services outside pediatric immunization and growth monitoring
 
 ---
 
@@ -299,17 +295,6 @@ Supervisor: **Kevin Ochieng’ Omondi**
 This project is developed for academic purposes.
 
 You may modify and extend it for educational and research purposes.
-
----
-
-## Acknowledgements
-
-Special thanks to:
-
-- Strathmore University
-- School of Computing and Engineering Sciences
-- Project Supervisor
-- Healthcare professionals contributing domain insights
 
 ---
 

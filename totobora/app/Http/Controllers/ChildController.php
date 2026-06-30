@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+// Manages child registration, guardian management, CH-XXXXX ID generation and immunization dashboard
 
 use App\Models\Child;
 use App\Models\Guardian;

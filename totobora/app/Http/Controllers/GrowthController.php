@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+// Records growth measurements and classifies WHO weight and height status per child
 
 use App\Models\Child;
 use App\Models\GrowthMeasurement;

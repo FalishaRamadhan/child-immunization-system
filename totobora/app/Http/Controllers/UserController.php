@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+// Admin-only user management with activate and deactivate account controls
 
 use App\Models\User;
 use App\Models\Facility;

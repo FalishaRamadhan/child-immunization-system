@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Services;
+// Handles SMS dispatch via Africa's Talking gateway with delivery status tracking
 
 use AfricasTalking\SDK\AfricasTalking;
 use App\Models\Reminder;
