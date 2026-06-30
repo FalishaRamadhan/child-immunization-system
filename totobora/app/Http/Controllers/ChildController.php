@@ -61,7 +61,7 @@ class ChildController extends Controller
         'birth_weight'        => ['nullable', 'numeric', 'min:0.5', 'max:10'],
         'guardian_first_name' => ['required', 'string', 'max:50'],
         'guardian_last_name'  => ['required', 'string', 'max:50'],
-        'phone_number'        => ['required', 'string', 'max:15', 'unique:guardians,phone_number'],
+        'phone_number'        => ['required', 'string', 'max:15'],
         'email'               => ['nullable', 'email', 'max:100'],
         'relationship'        => ['required', 'in:Mother,Father,Grandparent,Aunt/Uncle,Sibling,Other'],
         'facility_id'         => ['required', 'exists:facilities,facility_id'],
@@ -155,14 +155,6 @@ class ChildController extends Controller
             return;
         }
 
-        if ($user->role === 'caregiver') {
-            if ($child->caregiver_id !== $user->id) {
-                abort(403);
-            }
-            return;
-        }
-
-        abort(403);
     }
 
     private function authorizeRole(): void
