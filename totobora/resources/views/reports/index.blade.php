@@ -18,7 +18,7 @@
     <!-- CHILDREN -->
     <div class="flex-1 min-w-[180px] bg-gradient-to-br from-green-50 to-white border border-green-100 rounded-xl p-4 shadow-sm hover:shadow-md transition transform hover:-translate-y-1">
         <p class="text-xs text-gray-500 uppercase">Children Registered</p>
-        <p class="text-2xl font-bold text-green-700 mt-1">
+        <p class="text-2xl font-bold text-brand-700 mt-1">
             {{ $totalChildren }}
         </p>
     </div>
@@ -58,7 +58,7 @@
             <h3 class="font-semibold text-gray-700">
                 Immunization Coverage by Vaccine
             </h3>
-            <span class="text-xs bg-green-50 text-green-600 px-2 py-1 rounded-full">
+            <span class="text-xs bg-brand-50 text-brand-600 px-2 py-1 rounded-full">
                 Coverage
             </span>
         </div>
@@ -138,7 +138,7 @@
                 @empty
                     <tr>
                         <td colspan="5" class="text-center py-10 text-gray-400">
-                            No defaulters — all children are up to date 🎉
+                            No defaulters - all children are up to date
                         </td>
                     </tr>
                 @endforelse

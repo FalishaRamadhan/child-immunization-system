@@ -72,7 +72,7 @@
                 </p>
             </div>
             <a href="{{ route('immunizations.create', $child) }}"
-               class="block w-full text-center bg-green-600 hover:bg-green-700
+               class="block w-full text-center bg-brand-600 hover:bg-brand-700
                       text-white text-sm font-medium py-2 rounded-lg transition-colors">
                 + Record vaccine
             </a>

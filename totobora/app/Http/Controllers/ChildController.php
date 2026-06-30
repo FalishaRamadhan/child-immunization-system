@@ -21,8 +21,7 @@ class ChildController extends Controller
         ->latest();
 
     /*
-    |--------------------------------------------------------------------------
-    | Caregiver can only see their own child/children
+     Caregiver can only see their own child/children
     */
 
     if ($user->role === 'caregiver') {
@@ -30,9 +29,7 @@ class ChildController extends Controller
     }
 
     /*
-    |--------------------------------------------------------------------------
-    | Search child records
-    |--------------------------------------------------------------------------
+     Search child records
     */
 
     if ($search) {
@@ -59,10 +56,7 @@ class ChildController extends Controller
 
     public function create()
     {
-        $this->authorizeRole();
-
-        $facilities = Facility::orderBy('name')->get();
-
+        $facilities = \App\Models\Facility::orderBy('name')->get();
         return view('children.create', compact('facilities'));
     }
 
@@ -74,29 +68,15 @@ class ChildController extends Controller
         'date_of_birth'       => ['required', 'date', 'before:today'],
         'gender'              => ['required', 'in:Male,Female'],
         'birth_weight'        => ['nullable', 'numeric', 'min:0.5', 'max:10'],
-
         'guardian_first_name' => ['required', 'string', 'max:50'],
         'guardian_last_name'  => ['required', 'string', 'max:50'],
         'phone_number'        => ['required', 'string', 'max:15', 'unique:guardians,phone_number'],
-
-        // This email must belong to a caregiver user account
-        'email'               => ['required', 'email', 'max:100', 'exists:users,email'],
-
+        'email'               => ['nullable', 'email', 'max:100'],
         'relationship'        => ['required', 'in:Mother,Father,Grandparent,Aunt/Uncle,Sibling,Other'],
         'facility_id'         => ['required', 'exists:facilities,facility_id'],
     ]);
 
-    $caregiver = \App\Models\User::where('email', $validated['email'])
-        ->where('role', 'caregiver')
-        ->first();
-
-    if (!$caregiver) {
-        return back()
-            ->withErrors(['email' => 'The email must belong to a registered caregiver account.'])
-            ->withInput();
-    }
-
-    DB::transaction(function () use ($validated, $caregiver) {
+    DB::transaction(function () use ($validated) {
 
         $uniqueKey = strtolower($validated['first_name'])
             . strtolower($validated['last_name'])
@@ -110,10 +90,6 @@ class ChildController extends Controller
             'gender'        => $validated['gender'],
             'birth_weight'  => $validated['birth_weight'] ?? null,
             'facility_id'   => $validated['facility_id'],
-
-            // Correct: assign child to caregiver user
-            'caregiver_id'  => $caregiver->id,
-
             'unique_child'  => md5($uniqueKey),
         ]);
 

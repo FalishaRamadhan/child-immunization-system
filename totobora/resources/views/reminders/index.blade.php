@@ -15,7 +15,7 @@
         <form method="POST" action="{{ route('reminders.dispatch') }}">
             @csrf
             <button type="submit"
-                class="bg-green-600 hover:bg-green-700 text-white text-sm font-medium
+                class="bg-brand-600 hover:bg-brand-700 text-white text-sm font-medium
                        px-4 py-2 rounded-lg transition-colors flex items-center gap-2">
                 🔔 Dispatch due now
             </button>
@@ -24,7 +24,7 @@
 </div>
 
 @if(session('success'))
-    <div class="mb-4 bg-green-50 border border-green-200 text-green-700 text-sm
+    <div class="mb-4 bg-brand-50 border border-brand-200 text-brand-700 text-sm
                 rounded-lg px-4 py-3">
         {{ session('success') }}
     </div>

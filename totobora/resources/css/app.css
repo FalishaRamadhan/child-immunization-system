@@ -1,85 +1,12 @@
-body {
-  font-family: 'Segoe UI', Arial, sans-serif;
-  background: linear-gradient(135deg, #e6f4f1, #f5f7fb);
-  height: 100vh;
-}
+@import "tailwindcss";
 
-/* CENTER SCREEN */
-.login-container {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* LOGIN CARD */
-.login-card {
-  width: 380px;
-  background: white;
-  padding: 30px;
-  border-radius: 14px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-
-/* LOGO */
-.logo {
-  color: #0f766e;
-  margin-bottom: 5px;
-}
-
-.subtitle {
-  font-size: 13px;
-  color: #6b7280;
-  margin-bottom: 20px;
-}
-
-/* INPUTS */
-label {
-  font-size: 13px;
-  margin-top: 10px;
-  display: block;
-  color: #374151;
-}
-
-input {
-  width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-  margin-bottom: 12px;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  outline: none;
-}
-
-input:focus {
-  border-color: #0f766e;
-}
-
-/* REMEMBER ME */
-.remember {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 15px;
-}
-.logo img {
-    height: 60px;
-    width: auto;
-    object-fit: contain;
-}
-
-/* BUTTON */
-button {
-  width: 100%;
-  background: #0f766e;
-  color: white;
-  padding: 12px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: 600;
-}
-
-button:hover {
-  background: #115e59;
+@theme {
+    --color-brand-50:  #e8f5ef;
+    --color-brand-100: #c3e6d4;
+    --color-brand-200: #9dd6b9;
+    --color-brand-500: #1f7a5a;
+    --color-brand-600: #1f7a5a;
+    --color-brand-700: #155c43;
+    --color-brand-800: #0f4330;
+    --color-brand-900: #0a2e20;
 }

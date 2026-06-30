@@ -37,8 +37,7 @@ return [
 
     'africastalking' => [
         'username'  => env('AT_USERNAME', 'sandbox'),
-        'api_key'   => env('AT_API_KEY', ''),
-        'sender_id' => env('AT_SENDER_ID', 'TotoBora'),
+        'api_key'   => env('AT_API_KEY', 'atsk_be9daf4204c402a16239a2bc30da528eed151969d4ebecbcfe09ca02f2771c780d5f519a'),
     ],
 
 ];

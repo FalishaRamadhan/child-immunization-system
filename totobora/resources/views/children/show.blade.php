@@ -10,8 +10,8 @@
 
 {{-- Profile header --}}
 <div class="flex items-center gap-4 mb-8">
-    <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center
-                text-green-700 font-semibold text-lg">
+    <div class="w-12 h-12 rounded-full bg-brand-100 flex items-center justify-center
+                text-brand-700 font-semibold text-lg">
         {{ strtoupper(substr($child->first_name, 0, 1)) }}{{ strtoupper(substr($child->last_name, 0, 1)) }}
     </div>
 
@@ -90,7 +90,7 @@
             <p class="text-sm text-gray-400">No measurements yet.</p>
 
             @if($canManageChild)
-                <p class="text-xs text-green-600 mt-2">+ Record first →</p>
+                <p class="text-xs text-brand-600 mt-2">+ Record first →</p>
             @endif
         @endif
     </a>
@@ -104,7 +104,7 @@
 
         @if($canManageChild)
             <a href="{{ route('immunizations.create', $child) }}"
-               class="text-sm text-green-600 hover:underline">
+               class="text-sm text-brand-600 hover:underline">
                 + Record vaccine
             </a>
         @endif
@@ -159,7 +159,7 @@
 
         @if($canManageChild)
             <a href="{{ route('appointments.create', $child->child_id) }}"
-               class="text-sm text-green-600 hover:underline">
+               class="text-sm text-brand-600 hover:underline">
                 + Schedule
             </a>
         @endif
@@ -210,7 +210,7 @@
                                     @csrf
                                     @method('PATCH')
 
-                                    <button class="text-xs text-green-600 hover:underline mr-3">
+                                    <button class="text-xs text-brand-600 hover:underline mr-3">
                                         Attended
                                     </button>
                                 </form>

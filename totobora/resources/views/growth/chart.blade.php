@@ -6,8 +6,8 @@
 
     {{-- Header --}}
     <div class="flex items-center gap-4 mb-6">
-        <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center
-                    text-green-700 font-semibold">
+        <div class="w-10 h-10 rounded-full bg-brand-100 flex items-center justify-center
+                    text-brand-700 font-semibold">
             {{ strtoupper(substr($child->first_name,0,1)) }}{{ strtoupper(substr($child->last_name,0,1)) }}
         </div>
         <div>
@@ -19,7 +19,7 @@
             </p>
         </div>
         <a href="{{ route('growth.create', $child) }}"
-           class="ml-auto bg-green-600 hover:bg-green-700 text-white text-sm font-medium
+           class="ml-auto bg-brand-600 hover:bg-brand-700 text-white text-sm font-medium
                   px-4 py-2 rounded-lg transition-colors">
             + Record measurement
         </a>
@@ -56,7 +56,7 @@
             <canvas id="weightChart" height="220"></canvas>
             <div class="flex items-center gap-4 mt-3 text-xs text-gray-500">
                 <span class="flex items-center gap-1">
-                    <span class="inline-block w-6 h-0.5 bg-green-500"></span> Child
+                    <span class="inline-block w-6 h-0.5 bg-brand-500"></span> Child
                 </span>
                 <span class="flex items-center gap-1">
                     <span class="inline-block w-6 h-0.5 bg-gray-400" style="border-top:2px dashed #9ca3af"></span> Median
@@ -140,7 +140,7 @@
                         <td colspan="6" class="px-5 py-10 text-center text-gray-400">
                             No measurements recorded yet.
                             <a href="{{ route('growth.create', $child) }}"
-                               class="text-green-600 hover:underline ml-1">
+                               class="text-brand-600 hover:underline ml-1">
                                 Record the first measurement →
                             </a>
                         </td>

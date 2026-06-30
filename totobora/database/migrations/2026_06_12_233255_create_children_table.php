@@ -20,7 +20,6 @@ return new class extends Migration
             $table->decimal('birth_weight', 4, 2)->nullable();
             $table->foreignId('facility_id')->constrained('facilities', 'facility_id');
             $table->string('unique_child')->unique(); //first_name+last_name+dob+facility_id composite handledin model
-            $table->foreignId('caregiver_id')->nullable(false)->constrained('users')->onDelete('cascade');
 
             $table->timestamps();
         });

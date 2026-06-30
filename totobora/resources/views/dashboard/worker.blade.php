@@ -20,7 +20,7 @@
 
     <div class="bg-white p-5 rounded-xl border shadow-sm hover:shadow-md transition">
         <p class="text-xs text-gray-500 uppercase">Total Children</p>
-        <p class="text-3xl font-bold text-green-700 mt-2">
+        <p class="text-3xl font-bold text-brand-700 mt-2">
             {{ $totalChildren }}
         </p>
     </div>
@@ -56,7 +56,7 @@
                 </div>
 
                 <a href="{{ route('children.show', $child->child_id) }}"
-                   class="text-sm text-green-600 hover:underline">
+                   class="text-sm text-brand-600 hover:underline">
                     View
                 </a>
             </div>

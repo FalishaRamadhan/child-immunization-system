@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>TotoBora - Child Immunization System</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/favicon.ico" sizes="32x32">
 
     <style>
         :root {
@@ -183,17 +184,12 @@
     <div class="logo">
         <img src="{{ asset('images/totobora-logo.png') }}" alt="TotoBora Logo">
     </div>
-
-    <div>
-        <a href="#features">Features</a>
-        <a href="{{ route('login') }}" class="btn">Login</a>
-    </div>
 </div>
 
 <!-- HERO -->
 <div class="hero">
     <div class="hero-text">
-        <h1>Child Immunization Made Simple</h1>
+        <h1>Child Immunization<br>Made Simple</h1>
         <p>
             TotoBora helps caregivers and health facilities track vaccinations,
             manage appointments, and receive smart SMS reminders.
@@ -201,25 +197,9 @@
 
         <div class="hero-buttons">
             <a href="{{ route('login') }}" class="btn" onclick="showPanel('start')">
-                Get Started
+                Login
             </a>
-
-            <div class="btn-outline" onclick="showPanel('features')">
-                Explore Features
-            </div>
         </div>
-
-        <!-- INTERACTIVE PANEL -->
-        <div id="start" class="panel">
-            <h3>Welcome to TotoBora 👶</h3>
-            <p>Login to start managing child immunizations and reminders.</p>
-        </div>
-
-        <div id="features" class="panel">
-            <h3>What TotoBora Does</h3>
-            <p>Tracks children, sends reminders, manages appointments & ensures no child misses vaccines.</p>
-        </div>
-
     </div>
 </div>
 
@@ -229,22 +209,22 @@
 
     <div class="grid">
         <div class="card">
-            <h3>📅 Smart Reminders</h3>
+            <h3>Smart Reminders</h3>
             <p>Automated SMS alerts for vaccines & appointments.</p>
         </div>
 
         <div class="card">
-            <h3>👶 Child Tracking</h3>
+            <h3>Child Tracking</h3>
             <p>Full immunization history per child.</p>
         </div>
 
         <div class="card">
-            <h3>🏥 Facility Management</h3>
+            <h3>Facility Management</h3>
             <p>Organized healthcare workflows per facility.</p>
         </div>
 
         <div class="card">
-            <h3>🔒 Secure System</h3>
+            <h3>Secure System</h3>
             <p>Role-based access for caregivers and staff.</p>
         </div>
     </div>
@@ -252,7 +232,7 @@
 
 <!-- FOOTER -->
 <div class="footer">
-    © 2026 TotoBora • Child Immunization System
+    &copy 2026 TotoBora
 </div>
 
 <!-- JS INTERACTION -->

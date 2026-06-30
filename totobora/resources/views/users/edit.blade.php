@@ -32,14 +32,14 @@
                 <input type="text" name="first_name"
                     value="{{ old('first_name', $user->first_name) }}"
                     class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm
-                           focus:outline-none focus:ring-2 focus:ring-green-500">
+                           focus:outline-none focus:ring-2 focus:ring-brand-500">
             </div>
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">Last name</label>
                 <input type="text" name="last_name"
                     value="{{ old('last_name', $user->last_name) }}"
                     class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm
-                           focus:outline-none focus:ring-2 focus:ring-green-500">
+                           focus:outline-none focus:ring-2 focus:ring-brand-500">
             </div>
         </div>
 
@@ -48,14 +48,14 @@
             <input type="email" name="email"
                 value="{{ old('email', $user->email) }}"
                 class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm
-                       focus:outline-none focus:ring-2 focus:ring-green-500">
+                       focus:outline-none focus:ring-2 focus:ring-brand-500">
         </div>
 
         <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">Role</label>
             <select name="role"
                 class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm
-                       focus:outline-none focus:ring-2 focus:ring-green-500">
+                       focus:outline-none focus:ring-2 focus:ring-brand-500">
                 <option value="healthcare_worker"
                     {{ old('role', $user->role) === 'healthcare_worker' ? 'selected' : '' }}>
                     Healthcare worker
@@ -71,7 +71,7 @@
             <label class="block text-sm font-medium text-gray-700 mb-1">Facility</label>
             <select name="facility_id"
                 class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm
-                       focus:outline-none focus:ring-2 focus:ring-green-500">
+                       focus:outline-none focus:ring-2 focus:ring-brand-500">
                 <option value="">Select facility</option>
                 @foreach($facilities as $facility)
                     <option value="{{ $facility->facility_id }}"
@@ -91,7 +91,7 @@
                 </label>
                 <input type="password" name="password"
                     class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm
-                           focus:outline-none focus:ring-2 focus:ring-green-500">
+                           focus:outline-none focus:ring-2 focus:ring-brand-500">
             </div>
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">
@@ -99,13 +99,13 @@
                 </label>
                 <input type="password" name="password_confirmation"
                     class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm
-                           focus:outline-none focus:ring-2 focus:ring-green-500">
+                           focus:outline-none focus:ring-2 focus:ring-brand-500">
             </div>
         </div>
 
         <div class="flex items-center gap-3 pt-2">
             <button type="submit"
-                class="bg-green-600 hover:bg-green-700 text-white font-medium
+                class="bg-brand-600 hover:bg-brand-700 text-white font-medium
                        px-6 py-2 rounded-lg text-sm transition-colors">
                 Save changes
             </button>

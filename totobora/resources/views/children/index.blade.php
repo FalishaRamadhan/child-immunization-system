@@ -7,23 +7,22 @@
 @php
     $user = auth()->user();
     $canManageChildren = in_array($user->role, ['admin', 'healthcare_worker'], true);
-    $isCaregiver = $user->role === 'caregiver';
     $searchValue = $search ?? request('search');
 @endphp
 
 <div class="flex items-center justify-between mb-6">
     <div>
         <h2 class="text-xl font-semibold text-gray-800">
-            {{ $isCaregiver ? 'My Child Record' : 'Children Records' }}
+            Children Records
         </h2>
         <p class="text-sm text-gray-500 mt-1">
-            {{ $isCaregiver ? 'View your child immunization record.' : 'Search, view, and manage registered children.' }}
+            Search, view, and manage registered children.
         </p>
     </div>
 
     @if($canManageChildren)
         <a href="{{ route('children.create') }}"
-           class="bg-green-600 hover:bg-green-700 text-white text-sm font-medium
+           class="bg-brand-600 hover:bg-brand-700 text-white text-sm font-medium
                   px-4 py-2 rounded-lg transition-colors">
             + Register Child
         </a>
@@ -39,11 +38,11 @@
                    value="{{ $searchValue }}"
                    placeholder="Search by child name, child ID, guardian name, or phone number"
                    class="w-full border border-gray-300 rounded-lg px-4 py-2 text-sm
-                          focus:ring-green-500 focus:border-green-500">
+                          focus:ring-brand-500 focus:border-green-500">
 
             <div class="flex gap-2">
                 <button type="submit"
-                        class="bg-green-600 hover:bg-green-700 text-white text-sm font-medium
+                        class="bg-brand-600 hover:bg-brand-700 text-white text-sm font-medium
                                px-5 py-2 rounded-lg transition-colors">
                     Search
                 </button>
@@ -65,11 +64,11 @@
 
     <div class="px-5 py-4 border-b border-gray-100 flex items-center justify-between">
         <h3 class="font-medium text-gray-800">
-            {{ $isCaregiver ? 'Child Details' : 'Registered Children' }}
+            Registered Children
         </h3>
 
         <p class="text-sm text-gray-400">
-            {{ $children->count() }} record{{ $children->count() === 1 ? '' : 's' }}
+            {{ $children->total() }} record{{ $children->total() === 1 ? '' : 's' }}
         </p>
     </div>
 
@@ -95,8 +94,8 @@
                 <tr class="hover:bg-gray-50 transition-colors">
                     <td class="px-5 py-4">
                         <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center
-                                        text-green-700 font-semibold text-sm">
+                            <div class="w-10 h-10 rounded-full bg-brand-100 flex items-center justify-center
+                                        text-brand-700 font-semibold text-sm">
                                 {{ strtoupper(substr($child->first_name, 0, 1)) }}{{ strtoupper(substr($child->last_name, 0, 1)) }}
                             </div>
 
@@ -137,7 +136,7 @@
 
                     <td class="px-5 py-4 text-right">
                         <a href="{{ route('children.show', $child->child_id) }}"
-                           class="text-green-600 hover:underline text-sm font-medium">
+                           class="text-brand-600 hover:underline text-sm font-medium">
                             View
                         </a>
 

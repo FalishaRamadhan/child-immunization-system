@@ -4,12 +4,12 @@
 
 @section('content')
 
-<!-- HEADER (LOGO FIXED HERE) -->
+<!-- HEADER -->
 <div class="mb-6 flex items-center justify-between">
 
     <div class="flex items-center gap-4">
 
-        <!-- REAL LOGO (NO EMOJI) -->
+        <!-- REAL LOGO -->
         <img src="{{ asset('images/totobora-logo.png') }}"
              class="w-12 h-12 object-contain"
              alt="TotoBora Logo">
@@ -36,9 +36,9 @@
 <div class="grid grid-cols-4 gap-4 mb-8">
 
     <!-- CHILDREN -->
-    <div class="bg-white border rounded-xl p-5 shadow-sm hover:shadow-lg transition hover:-translate-y-1 border-green-200">
+    <div class="bg-white border rounded-xl p-5 shadow-sm hover:shadow-lg transition hover:-translate-y-1 border-brand-200">
         <p class="text-xs text-gray-500 uppercase">Children</p>
-        <p class="text-3xl font-bold text-green-600 mt-2">
+        <p class="text-3xl font-bold text-brand-600 mt-2">
             {{ $totalChildren }}
         </p>
     </div>
@@ -65,34 +65,6 @@
         <p class="text-3xl font-bold text-purple-600 mt-2">
             {{ $remindersSent }}
         </p>
-    </div>
-
-</div>
-
-<!-- QUICK ACTIONS (COLORED LIKE REPORTS STYLE) -->
-<div class="bg-white border rounded-xl p-6 shadow-sm">
-
-    <h3 class="font-semibold text-gray-700 mb-4">Quick Actions</h3>
-
-    <div class="flex gap-3 flex-wrap">
-
-        <a href="{{ route('children.index') }}"
-           class="px-4 py-2 rounded-lg bg-green-600 text-white hover:bg-green-700 transition">
-            View Children
-        </a>
-
-        <a href="{{ route('reminders.index') }}"
-           class="px-4 py-2 rounded-lg bg-green-600 text-white hover:bg-blue-700 transition">
-            View Reminders
-        </a>
-
-        @if(auth()->user()->role === 'admin')
-        <a href="{{ route('reports.index') }}"
-           class="px-4 py-2 rounded-lg bg-green-600 text-white hover:bg-purple-700 transition">
-            View Reports
-        </a>
-        @endif
-
     </div>
 
 </div>

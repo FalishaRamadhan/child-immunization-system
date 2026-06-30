@@ -55,7 +55,7 @@
                 </label>
                 <select name="vaccine_name" id="vaccine_name"
                     class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm
-                           focus:outline-none focus:ring-2 focus:ring-green-500">
+                           focus:outline-none focus:ring-2 focus:ring-brand-500">
                     <option value="">Select vaccine</option>
                     @foreach(array_keys($scheduleOptions) as $vaccine)
                         <option value="{{ $vaccine }}"
@@ -72,7 +72,7 @@
                 </label>
                 <select name="dose_number" id="dose_number"
                     class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm
-                           focus:outline-none focus:ring-2 focus:ring-green-500">
+                           focus:outline-none focus:ring-2 focus:ring-brand-500">
                     <option value="">Select dose</option>
                     @for($i = 1; $i <= 4; $i++)
                         <option value="{{ $i }}"
@@ -91,7 +91,7 @@
                     value="{{ old('date_administered', now()->toDateString()) }}"
                     max="{{ now()->toDateString() }}"
                     class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm
-                           focus:outline-none focus:ring-2 focus:ring-green-500">
+                           focus:outline-none focus:ring-2 focus:ring-brand-500">
             </div>
         </div>
 
@@ -100,12 +100,12 @@
             <textarea name="notes" rows="3"
                 placeholder="Any observations or reactions..."
                 class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm
-                       focus:outline-none focus:ring-2 focus:ring-green-500">{{ old('notes') }}</textarea>
+                       focus:outline-none focus:ring-2 focus:ring-brand-500">{{ old('notes') }}</textarea>
         </div>
 
         <div class="flex items-center gap-3 pt-2">
             <button type="submit"
-                class="bg-green-600 hover:bg-green-700 text-white font-medium
+                class="bg-brand-600 hover:bg-brand-700 text-white font-medium
                        px-6 py-2 rounded-lg text-sm transition-colors">
                 Save vaccination
             </button>

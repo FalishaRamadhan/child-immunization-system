@@ -10,14 +10,14 @@
             <p class="text-sm text-gray-500 mt-1">Manage system users and facility assignments.</p>
         </div>
         <a href="{{ route('users.create') }}"
-           class="bg-green-600 hover:bg-green-700 text-white text-sm font-medium
+           class="bg-brand-600 hover:bg-brand-700 text-white text-sm font-medium
                   px-4 py-2 rounded-lg transition-colors">
             + Add user
         </a>
     </div>
 
     @if(session('success'))
-        <div class="mb-4 bg-green-50 border border-green-200 text-green-700
+        <div class="mb-4 bg-brand-50 border border-brand-200 text-brand-700
                     text-sm rounded-lg px-4 py-3">
             {{ session('success') }}
         </div>
@@ -56,7 +56,7 @@
                         <td class="px-5 py-3">
                             <span class="px-2 py-1 rounded-full text-xs font-medium
                                 {{ $user->is_active
-                                    ? 'bg-green-100 text-green-700'
+                                    ? 'bg-brand-100 text-brand-700'
                                     : 'bg-gray-100 text-gray-500' }}">
                                 {{ $user->is_active ? 'Active' : 'Inactive' }}
                             </span>
@@ -78,7 +78,7 @@
                                 <form method="POST"
                                       action="{{ route('users.reactivate', $user) }}">
                                     @csrf @method('PATCH')
-                                    <button class="text-sm text-green-600 hover:underline">
+                                    <button class="text-sm text-brand-600 hover:underline">
                                         Reactivate
                                     </button>
                                 </form>
@@ -90,7 +90,7 @@
                         <td colspan="6" class="px-5 py-10 text-center text-gray-400">
                             No healthcare workers yet.
                             <a href="{{ route('users.create') }}"
-                               class="text-green-600 hover:underline ml-1">
+                               class="text-brand-600 hover:underline ml-1">
                                 Add the first one →
                             </a>
                         </td>

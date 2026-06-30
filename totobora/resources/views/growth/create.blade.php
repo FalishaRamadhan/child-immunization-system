@@ -16,8 +16,8 @@
     {{-- Child info bar --}}
     <div class="flex items-center gap-3 bg-white border border-gray-200 rounded-xl
                 px-5 py-3 mb-6">
-        <div class="w-9 h-9 rounded-full bg-green-100 flex items-center justify-center
-                    text-green-700 font-semibold text-sm">
+        <div class="w-9 h-9 rounded-full bg-brand-100 flex items-center justify-center
+                    text-brand-700 font-semibold text-sm">
             {{ strtoupper(substr($child->first_name,0,1)) }}{{ strtoupper(substr($child->last_name,0,1)) }}
         </div>
         <div>
@@ -49,7 +49,7 @@
                 value="{{ old('date_measured', now()->toDateString()) }}"
                 max="{{ now()->toDateString() }}"
                 class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm
-                       focus:outline-none focus:ring-2 focus:ring-green-500">
+                       focus:outline-none focus:ring-2 focus:ring-brand-500">
         </div>
 
         <div class="grid grid-cols-2 gap-4">
@@ -61,7 +61,7 @@
                     value="{{ old('weight_kg') }}"
                     placeholder="e.g. 5.8" step="0.1" min="0.5" max="50"
                     class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm
-                           focus:outline-none focus:ring-2 focus:ring-green-500">
+                           focus:outline-none focus:ring-2 focus:ring-brand-500">
             </div>
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">
@@ -71,7 +71,7 @@
                     value="{{ old('height_cm') }}"
                     placeholder="e.g. 61.0" step="0.1" min="20" max="130"
                     class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm
-                           focus:outline-none focus:ring-2 focus:ring-green-500">
+                           focus:outline-none focus:ring-2 focus:ring-brand-500">
             </div>
         </div>
 
@@ -81,7 +81,7 @@
 
         <div class="flex items-center gap-3 pt-2">
             <button type="submit"
-                class="bg-green-600 hover:bg-green-700 text-white font-medium
+                class="bg-brand-600 hover:bg-brand-700 text-white font-medium
                        px-6 py-2 rounded-lg text-sm transition-colors">
                 Save measurement
             </button>

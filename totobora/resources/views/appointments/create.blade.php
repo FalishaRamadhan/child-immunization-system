@@ -33,7 +33,7 @@
             </label>
             <select name="vaccine_due"
                 class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm
-                       focus:outline-none focus:ring-2 focus:ring-green-500">
+                       focus:outline-none focus:ring-2 focus:ring-brand-500">
                 <option value="">Select vaccine</option>
                 @foreach($upcoming as $due)
                     <option value="{{ $due['vaccine'] }} dose {{ $due['dose'] }}"
@@ -56,7 +56,7 @@
                 value="{{ old('scheduled_date', now()->addDays(1)->toDateString()) }}"
                 min="{{ now()->toDateString() }}"
                 class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm
-                       focus:outline-none focus:ring-2 focus:ring-green-500">
+                       focus:outline-none focus:ring-2 focus:ring-brand-500">
         </div>
 
         {{-- Guardian info --}}
@@ -71,7 +71,7 @@
 
         <div class="flex items-center gap-3 pt-2">
             <button type="submit"
-                class="bg-green-600 hover:bg-green-700 text-white font-medium
+                class="bg-brand-600 hover:bg-brand-700 text-white font-medium
                        px-6 py-2 rounded-lg text-sm transition-colors">
                 Confirm appointment
             </button>

@@ -36,7 +36,7 @@
                     <input type="text" name="first_name" value="{{ old('first_name') }}"
                         placeholder="e.g. Amara"
                         class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm
-                               focus:outline-none focus:ring-2 focus:ring-green-500">
+                               focus:outline-none focus:ring-2 focus:ring-brand-500">
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">
@@ -45,7 +45,7 @@
                     <input type="text" name="last_name" value="{{ old('last_name') }}"
                         placeholder="e.g. Otieno"
                         class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm
-                               focus:outline-none focus:ring-2 focus:ring-green-500">
+                               focus:outline-none focus:ring-2 focus:ring-brand-500">
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">
@@ -54,7 +54,7 @@
                     <input type="date" name="date_of_birth" value="{{ old('date_of_birth') }}"
                         max="{{ now()->subDay()->toDateString() }}"
                         class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm
-                               focus:outline-none focus:ring-2 focus:ring-green-500">
+                               focus:outline-none focus:ring-2 focus:ring-brand-500">
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">
@@ -62,7 +62,7 @@
                     </label>
                     <select name="gender"
                         class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm
-                               focus:outline-none focus:ring-2 focus:ring-green-500">
+                               focus:outline-none focus:ring-2 focus:ring-brand-500">
                         <option value="">Select</option>
                         <option value="Male"   {{ old('gender') === 'Male'   ? 'selected' : '' }}>Male</option>
                         <option value="Female" {{ old('gender') === 'Female' ? 'selected' : '' }}>Female</option>
@@ -75,7 +75,7 @@
                     <input type="number" name="birth_weight" value="{{ old('birth_weight') }}"
                         placeholder="e.g. 3.2" step="0.1" min="0.5" max="5"
                         class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm
-                               focus:outline-none focus:ring-2 focus:ring-green-500">
+                               focus:outline-none focus:ring-2 focus:ring-brand-500">
                 </div>
             </div>
         </div>
@@ -94,7 +94,7 @@
                         value="{{ old('guardian_first_name') }}"
                         placeholder="Full name"
                         class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm
-                               focus:outline-none focus:ring-2 focus:ring-green-500">
+                               focus:outline-none focus:ring-2 focus:ring-brand-500">
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">
@@ -104,7 +104,7 @@
                         value="{{ old('guardian_last_name') }}"
                         placeholder="Full name"
                         class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm
-                               focus:outline-none focus:ring-2 focus:ring-green-500">
+                               focus:outline-none focus:ring-2 focus:ring-brand-500">
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">
@@ -113,7 +113,7 @@
                     <input type="text" name="phone_number" value="{{ old('phone_number') }}"
                         placeholder="+254 7XX XXX XXX"
                         class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm
-                               focus:outline-none focus:ring-2 focus:ring-green-500">
+                               focus:outline-none focus:ring-2 focus:ring-brand-500">
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">
@@ -121,7 +121,7 @@
                     </label>
                     <select name="relationship"
                         class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm
-                               focus:outline-none focus:ring-2 focus:ring-green-500">
+                               focus:outline-none focus:ring-2 focus:ring-brand-500">
                         <option value="">Select</option>
                         @foreach(['Mother','Father','Grandparent','Aunt/Uncle','Sibling','Other'] as $rel)
                             <option value="{{ $rel }}"
@@ -133,12 +133,12 @@
                 </div>
                 <div class="col-span-2">
                     <label class="block text-sm font-medium text-gray-700 mb-1">
-                        Email <span class="text-red-500">*</span>
+                        Email <span class="text-gray-400 font-normal">(optional)</span>
                     </label>
                     <input type="email" name="email" value="{{ old('email') }}"
                         placeholder="email@example.com"
                         class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm
-                               focus:outline-none focus:ring-2 focus:ring-green-500">
+                               focus:outline-none focus:ring-2 focus:ring-brand-500">
                 </div>
             </div>
         </div>
@@ -151,7 +151,7 @@
 
     <select name="facility_id"
         class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm
-               focus:outline-none focus:ring-2 focus:ring-green-500"
+               focus:outline-none focus:ring-2 focus:ring-brand-500"
         required>
 
         <option value="">Select facility</option>
@@ -167,7 +167,7 @@
 
         <div class="flex items-center gap-3">
             <button type="submit"
-                class="bg-green-600 hover:bg-green-700 text-white font-medium px-6 py-2
+                class="bg-brand-600 hover:bg-brand-700 text-white font-medium px-6 py-2
                        rounded-lg text-sm transition-colors">
                 Register child
             </button>
