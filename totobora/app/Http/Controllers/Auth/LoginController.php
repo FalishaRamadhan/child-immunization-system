@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Services\AuditService;
+
 
 class LoginController extends Controller
 {
@@ -22,6 +24,9 @@ class LoginController extends Controller
             'email'    => ['required', 'email'],
             'password' => ['required'],
         ]);
+
+        // After session regenerate
+        AuditService::log('login', 'User logged in successfully');
 
         // Rate limit: max 5 attempts per minute per IP
         $key = 'login-attempts:' . $request->ip();
@@ -58,6 +63,7 @@ class LoginController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+        AuditService::log('logout', 'User logged out');
         return redirect()->route('login');
     }
 }

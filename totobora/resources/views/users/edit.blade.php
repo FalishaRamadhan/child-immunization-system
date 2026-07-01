@@ -8,10 +8,19 @@
     <div class="mb-6">
         <a href="{{ route('users.index') }}"
            class="text-sm text-gray-500 hover:text-gray-700">← Users</a>
+
         <h2 class="text-xl font-semibold text-gray-800 mt-1">
             Edit — {{ $user->first_name }} {{ $user->last_name }}
         </h2>
     </div>
+
+    {{-- Alerts --}}
+    @if(session('success'))
+        <div class="mb-4 bg-green-50 border border-green-200 text-green-700
+                    text-sm rounded-lg px-4 py-3">
+            {{ session('success') }}
+        </div>
+    @endif
 
     @if($errors->any())
         <div class="mb-4 bg-red-50 border border-red-200 text-red-700
@@ -22,10 +31,14 @@
         </div>
     @endif
 
+
     <form method="POST" action="{{ route('users.update', $user) }}"
           class="bg-white rounded-xl border border-gray-200 p-6 space-y-5">
-        @csrf @method('PUT')
 
+        @csrf
+        @method('PUT')
+
+        {{-- Name --}}
         <div class="grid grid-cols-2 gap-4">
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">First name</label>
@@ -34,6 +47,7 @@
                     class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm
                            focus:outline-none focus:ring-2 focus:ring-brand-500">
             </div>
+
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">Last name</label>
                 <input type="text" name="last_name"
@@ -43,6 +57,7 @@
             </div>
         </div>
 
+        {{-- Email --}}
         <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
             <input type="email" name="email"
@@ -51,28 +66,35 @@
                        focus:outline-none focus:ring-2 focus:ring-brand-500">
         </div>
 
+        {{-- Role --}}
         <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">Role</label>
             <select name="role"
                 class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm
                        focus:outline-none focus:ring-2 focus:ring-brand-500">
+
                 <option value="healthcare_worker"
                     {{ old('role', $user->role) === 'healthcare_worker' ? 'selected' : '' }}>
                     Healthcare worker
                 </option>
+
                 <option value="admin"
                     {{ old('role', $user->role) === 'admin' ? 'selected' : '' }}>
                     Administrator
                 </option>
+
             </select>
         </div>
 
+        {{-- Facility --}}
         <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">Facility</label>
             <select name="facility_id"
                 class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm
                        focus:outline-none focus:ring-2 focus:ring-brand-500">
+
                 <option value="">Select facility</option>
+
                 @foreach($facilities as $facility)
                     <option value="{{ $facility->facility_id }}"
                         {{ old('facility_id', $user->facility_id) == $facility->facility_id
@@ -80,38 +102,37 @@
                         {{ $facility->name }} — {{ $facility->location }}
                     </option>
                 @endforeach
+
             </select>
         </div>
 
-        <div class="grid grid-cols-2 gap-4">
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">
-                    New password
-                    <span class="text-gray-400 font-normal">(leave blank to keep current)</span>
-                </label>
-                <input type="password" name="password"
-                    class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm
-                           focus:outline-none focus:ring-2 focus:ring-brand-500">
-            </div>
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-1">
-                    Confirm new password
-                </label>
-                <input type="password" name="password_confirmation"
-                    class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm
-                           focus:outline-none focus:ring-2 focus:ring-brand-500">
-            </div>
+        {{-- Password Reset Section --}}
+        <div class="border-t pt-5 mt-6">
+            <form method="POST" action="{{ route('users.resetPassword', $user) }}">
+                @csrf
+                <button type="submit"
+                    class="bg-brand-900 hover:bg-brand-700 text-white font-medium
+                       px-6 py-2 rounded-lg text-sm transition-colors">
+                    Send Password Reset Link
+                </button>
+            </form>
+
         </div>
 
+        {{-- Actions --}}
         <div class="flex items-center gap-3 pt-2">
             <button type="submit"
                 class="bg-brand-600 hover:bg-brand-700 text-white font-medium
                        px-6 py-2 rounded-lg text-sm transition-colors">
                 Save changes
             </button>
+
             <a href="{{ route('users.index') }}"
-               class="text-sm text-gray-500 hover:text-gray-700">Cancel</a>
+               class="text-sm text-gray-500 hover:text-gray-700">
+                Cancel
+            </a>
         </div>
+
     </form>
 </div>
 @endsection

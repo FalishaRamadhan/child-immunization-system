@@ -103,6 +103,8 @@ class ChildController extends Controller
 
     return redirect()->route('children.index')
         ->with('success', 'Child registered successfully.');
+
+    AuditService::log('register_child', "Registered child {$validated['first_name']} {$validated['last_name']}", 'Child', $child->child_id ?? null);
 }
     public function show(Child $child)
     {

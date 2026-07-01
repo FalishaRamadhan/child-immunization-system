@@ -7,6 +7,7 @@ use App\Models\Facility;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
+use Illuminate\Support\Facades\Password as PasswordBroker;
 
 class UserController extends Controller
 {
@@ -87,6 +88,21 @@ class UserController extends Controller
 
         return redirect()->route('users.index')
             ->with('success', 'User updated successfully.');
+    }
+
+    public function sendResetLink(User $user)
+    {
+        $status = Password::sendResetLink([
+            'email' => $user->email
+        ]);
+
+        if ($status === Password::RESET_LINK_SENT) {
+            return back()->with('success', 'Password reset link sent to ' . $user->email);
+        }
+
+        return back()->withErrors([
+            'email' => 'Unable to send reset link. Please try again.'
+        ]);
     }
 
     public function deactivate(User $user)

@@ -84,8 +84,33 @@
                 Log in
             </button>
 
-        </form>
+            <!-- Divider -->
+            <div class="flex items-center my-4">
+                <div class="flex-1 border-t border-gray-200"></div>
+                <span class="px-3 text-xs text-gray-400">or</span>
+                <div class="flex-1 border-t border-gray-200"></div>
+            </div>
 
+            <!-- Google Login -->
+            <a href="{{ route('google.login') }}"
+            class="w-full flex items-center justify-center gap-3
+                    border border-gray-300 rounded-lg py-2.5
+                    bg-white hover:bg-gray-50
+                    transition text-sm font-medium text-gray-700">
+
+                <svg xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 48 48"
+                    class="w-5 h-5">
+                    <path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.3 36 24 36c-6.6 0-12-5.4-12-12S17.4 12 24 12c3 0 5.7 1.1 7.8 2.9l5.7-5.7C33.9 6.1 29.2 4 24 4 13 4 4 13 4 24s9 20 20 20 20-9 20-20c0-1.3-.1-2.4-.4-3.5z"/>
+                    <path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.4 19 12 24 12c3 0 5.7 1.1 7.8 2.9l5.7-5.7C33.9 6.1 29.2 4 24 4c-7.7 0-14.3 4.3-17.7 10.7z"/>
+                    <path fill="#4CAF50" d="M24 44c5.1 0 9.7-2 13.2-5.2l-6.1-5.2c-2 1.5-4.5 2.4-7.1 2.4-5.3 0-9.7-3.3-11.3-8H6.2C9.5 39.5 15.9 44 24 44z"/>
+                    <path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-1.1 3.1-3.3 5.5-6.2 7.2l6.1 5.2C38.7 37.2 44 31.3 44 24c0-1.3-.1-2.4-.4-3.5z"/>
+                </svg>
+
+                <span>Continue with Google</span>
+            </a>
+        </form>
+        
         <p class="text-xs text-gray-300 mt-6">&copy {{ date('Y') }} TotoBora</p>
     </div>
 
