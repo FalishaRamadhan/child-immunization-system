@@ -301,3 +301,89 @@ You may modify and extend it for educational and research purposes.
 ## Keywords
 
 Child Immunization • Growth Monitoring • Pediatric Health • Continuity of Care • Healthcare Information System • Laravel • MySQL • Web-Based Health System
+
+## Authentication Flow
+
+
+TotoBora uses session-based authentication built on Laravel's authentication 
+system. Access is restricted to administrators and healthcare workers only. 
+Caregivers do not log in - they interact with the system through SMS reminders.
+
+
+### Entry and login
+
+
+Every protected route is guarded by Laravel's `auth` middleware. Any 
+unauthenticated request is redirected to `/login` regardless of the URL 
+attempted.
+
+
+On login, the system first checks rate limiting - a maximum of five attempts 
+per IP address per minute. Exceeding this blocks further attempts temporarily. 
+Within the limit, credentials are verified against the `users` table. 
+Passwords are stored as bcrypt hashes and are never stored or compared as 
+plain text. Failed attempts return a generic error message that does not 
+reveal whether the email or password was wrong.
+
+
+After correct credentials are verified, the system checks that the account's 
+`is_active` status is `true`. Deactivated accounts are rejected even with 
+valid credentials. On success, the session ID is regenerated to prevent 
+session fixation, and the rate limiter is cleared.
+
+
+### Role-based redirection
+
+
+After login, users are redirected based on their role:
+
+ Admin:
+ Redirected to: `/reports`
+ Access: Can access all facilities, all records, and manage users.
+
+Healthcare Worker:
+Redirected to: `/children`
+Access:Can only access records for their assigned facility.
+
+This is enforced on every request via the `EnsureRole` middleware - not just 
+at the point of login. A healthcare worker navigating directly to `/reports` 
+or `/users` receives a `403 Forbidden` response.
+
+
+### Session and CSRF protection
+
+
+Sessions are stored server-side. Only an encrypted session ID travels to the 
+browser via an HTTP-only cookie. All forms include a `@csrf` token that 
+Laravel validates on every state-changing request, blocking cross-site 
+request forgery.
+
+
+### Logout
+
+
+Logout calls `Auth::logout()`, invalidates the session, and regenerates the 
+CSRF token. The browser back button does not restore access after logout.
+
+
+### Password reset
+
+
+Users request a reset via the *Forgot password?* link on the login page. 
+The system generates a random 64-character token, stores it hashed in 
+`password_reset_tokens`, and it expires after 60 minutes. On submission, 
+the token is verified and checked for expiry. If valid, the password is 
+updated with a new bcrypt hash and the token is deleted, making it 
+single-use.
+
+
+### Account creation
+
+
+Accounts are not self-registered. Only an administrator can create user 
+accounts through `/users/create`, assigning the role, facility, and initial 
+password. This reflects the system's design , healthcare workers are 
+provisioned staff, not self-signing members of the public.
+
+
+
