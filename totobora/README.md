@@ -1,58 +1,303 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# TotoBora: A Web-Based Child Immunization and Growth Monitoring System for Improving Continuity of Care in Resource-Constrained Healthcare Facilities
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Problem Statement
 
-## About Laravel
+Many healthcare facilities in resource-constrained environments still rely on paper-based systems for pediatric health records. This often results in:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- Misplaced or incomplete records
+- Missed immunization schedules
+- Poor growth monitoring
+- Delayed medical interventions
+- Weak continuity of care
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+TotoBora addresses these challenges by digitizing child healthcare records into a centralized and accessible system.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## Features
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Child Registration
+- Register new child profiles
+- Store biodata and guardian information
+- Maintain centralized pediatric records
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Immunization Tracking
+- Record administered vaccines
+- Track immunization history
+- Generate upcoming vaccination schedules
+- Identify missed immunization appointments
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+### Growth Monitoring
+- Record height and weight measurements
+- Track child growth progress over time
+- Generate growth reports and summaries
 
-## Agentic Development
+### Appointment Management
+- Schedule clinic visits
+- Track follow-up appointments
+- Monitor immunization adherence
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+### Automated SMS Reminders
+- Notify caregivers about upcoming appointments
+- Send reminders for missed vaccinations
+- Improve continuity of care
+
+### Authentication and Role-Based Access
+- Secure login system
+- Healthcare worker access control
+- Administrator management features
+
+### Reporting
+- Generate immunization reports
+- Monitor growth trends
+- Support healthcare decision-making
+
+---
+
+## System Objectives
+
+The main objective of TotoBora is:
+
+> To develop a web-based child immunization and growth monitoring system for resource-constrained healthcare facilities.
+
+Specific objectives include:
+
+- Improving child immunization tracking
+- Supporting early growth monitoring and intervention
+- Reducing missed vaccination appointments
+- Enhancing continuity of pediatric care
+- Improving healthcare record accessibility
+
+---
+
+## Tech Stack
+
+### Backend
+- Laravel (PHP Framework)
+
+### Frontend
+- HTML5
+- CSS3
+- JavaScript
+
+### Database
+- MySQL
+
+### Development Tools
+- Visual Studio Code
+- Git & GitHub
+- Draw.io / Lucidchart
+
+---
+
+## Core Modules
+### Login
+<img width="344" height="383" alt="Screenshot 2026-06-29 122804" src="https://github.com/user-attachments/assets/cd4ec4d6-236a-411f-955d-663398bb6494" />
+
+### Dashboard
+<img width="959" height="284" alt="Screenshot 2026-06-29 122839" src="https://github.com/user-attachments/assets/1d8f84e1-4eb3-4900-8484-0bf25520096b" />
+
+### Children records
+<img width="958" height="397" alt="Screenshot 2026-06-29 122855" src="https://github.com/user-attachments/assets/a18e8fc8-e1a3-441a-95f0-7b0db78b4760" />
+
+### Child Profile
+<img width="958" height="307" alt="Screenshot 2026-06-29 123035" src="https://github.com/user-attachments/assets/d9bdf19e-3651-4170-b086-2eeaa76e9e1e" />
+
+### Reminders
+<img width="959" height="317" alt="Screenshot 2026-06-29 123054" src="https://github.com/user-attachments/assets/6abfa04f-671b-4286-b585-9fb5a178807f" />
+
+### Reports
+<img width="946" height="473" alt="image" src="https://github.com/user-attachments/assets/118a4fe2-65eb-43e9-abd5-f6dc91fbc210" />
+
+---
+
+## Installation Guide
+
+### Prerequisites
+
+Ensure you have installed:
+
+- PHP >= 8.x
+- Composer
+- MySQL
+- Node.js & npm
+- Laravel CLI
+
+### Clone the Repository
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone https://github.com/yourusername/totobora.git
+cd totobora
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+### Install Dependencies
 
-## Contributing
+```bash
+composer install
+npm install
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Configure Environment
 
-## Code of Conduct
+Copy the environment file:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+cp .env.example .env
+```
 
-## Security Vulnerabilities
+Update database credentials in `.env`.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Generate Application Key
+
+```bash
+php artisan key:generate
+```
+
+### Run Database Migrations
+
+```bash
+php artisan migrate
+```
+
+### Seed Database (Optional)
+
+```bash
+php artisan db:seed
+```
+
+### Start Development Server
+
+```bash
+php artisan serve
+```
+
+Visit:
+
+```text
+http://127.0.0.1:8000
+```
+
+---
+
+## Testing
+
+Run automated tests using PHPUnit:
+
+```bash
+php artisan test
+```
+
+Testing includes:
+
+- Unit Testing
+- Integration Testing
+- System Testing
+- User Acceptance Testing (UAT)
+
+---
+
+## Usage Instructions
+### Administrator
+1. Log in to the system.
+2. Manage healthcare worker accounts.
+3. Configure system settings where applicable.
+4. Monitor registered children, appointments, and reports.
+5. Manage role-based access permissions.
+
+### Healthcare Worker
+1. Log in using authorized credentials.
+2. Register a child and enter guardian details.
+3. Record administered vaccines.
+4. Add height and weight measurements.
+5. Generate immunization and growth reports.
+6. Trigger or manage SMS reminders where applicable.
+
+### Caregiver / Parent
+Caregivers do not directly manage the system. They receive SMS reminders for:
+> Upcoming vaccination appointments
+> Missed immunization appointments
+
+---
+## Folder Structure
+
+totobora/
+├── app/
+│   ├── Http/
+│   ├── Models/
+│   ├── Providers/
+│   └── Services/
+├── config/
+├── database/
+│   ├── migrations/
+│   └── seeders/
+├── public/
+├── resources/
+│   ├── css/
+│   ├── js/
+│   └── views/
+├── routes/
+├── storage/
+├── tests/
+├── artisan
+├── composer.json
+├── package.json
+└── vite.config.js
+
+---
+
+## API Documentation
+
+TotoBora is primarily a web-based Laravel application. However, it uses an external API integration through Africa’s Talking for SMS notifications.
+
+Provider: Africa’s Talking
+Purpose: Sending SMS notifications to caregivers
+Authentication: API Key
+Usage: Appointment reminders and missed vaccination alerts
+SMS Reminder Use Cases
+
+The Africa’s Talking SMS API is used when:
+> A child has an upcoming vaccination appointment
+> A child has missed a scheduled immunization visit
+
+---
+
+## Scope
+
+TotoBora focuses on:
+
+✅ Child immunization tracking  
+✅ Growth monitoring  
+✅ Appointment scheduling  
+✅ SMS reminders  
+✅ Role-based authentication  
+✅ Basic reporting
+
+The system does **not** include:
+
+❌ Hospital billing  
+❌ Pharmacy management  
+❌ AI diagnosis  
+❌ National health information systems integration  
+❌ Management of healthcare services outside pediatric immunization and growth monitoring
+
+---
+
+## Contributors
+
+**Ramadhan Falisha Achieng**  
+**Onyimbo Daisy Lydiah**  
+Supervisor: **Kevin Ochieng’ Omondi**
+
+---
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is developed for academic purposes.
+
+You may modify and extend it for educational and research purposes.
+
+---
+
+## Keywords
+
+Child Immunization • Growth Monitoring • Pediatric Health • Continuity of Care • Healthcare Information System • Laravel • MySQL • Web-Based Health System
