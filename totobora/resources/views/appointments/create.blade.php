@@ -40,7 +40,7 @@
                         {{ old('vaccine_due') === $due['vaccine'].' dose '.$due['dose']
                             ? 'selected' : '' }}>
                         {{ $due['vaccine'] }} dose {{ $due['dose'] }}
-                        — due {{ $due['due_date']->format('d M Y') }}
+                    - due {{ $due['due_date']->format('d M Y') }}
                         @if($due['overdue']) (Overdue) @endif
                     </option>
                 @endforeach
@@ -65,7 +65,7 @@
         <div class="bg-gray-50 rounded-lg px-4 py-3 text-sm text-gray-600">
             <span class="font-medium">SMS reminder to:</span>
             {{ $guardian->first_name }} {{ $guardian->last_name }}
-            · {{ $guardian->phone_number }}
+            - {{ $guardian->phone_number }}
         </div>
         @endif
 
