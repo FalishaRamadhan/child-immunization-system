@@ -12,7 +12,7 @@
     </p>
 </div>
 
-<!-- KPI STRIP (SMALL + COLORED + INTERACTIVE) -->
+<!-- KPI STRIP -->
 <div class="flex flex-wrap gap-4 mb-8">
 
     <!-- CHILDREN -->
@@ -98,6 +98,7 @@
 
             <thead class="bg-gray-50 text-left">
                 <tr>
+                    <th class="px-5 py-3">No.</th>
                     <th class="px-5 py-3">Child</th>
                     <th class="px-5 py-3">Vaccine</th>
                     <th class="px-5 py-3">Due Date</th>
@@ -111,6 +112,10 @@
                 @forelse($defaulters as $d)
                     <tr class="hover:bg-gray-50 transition cursor-pointer"
                         onclick="window.location='{{ route('children.show', $d['child']) }}'">
+
+                        <td class="px-5 py-3 text-gray-600">
+                            {{ $loop->iteration }}
+                        </td>
 
                         <td class="px-5 py-3 font-medium text-gray-800">
                             {{ $d['child']->first_name }} {{ $d['child']->last_name }}
@@ -137,7 +142,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="5" class="text-center py-10 text-gray-400">
+                        <td colspan="6" class="text-center py-10 text-gray-400">
                             No defaulters - all children are up to date
                         </td>
                     </tr>

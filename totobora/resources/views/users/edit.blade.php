@@ -7,10 +7,12 @@
 
     <div class="mb-6">
         <a href="{{ route('users.index') }}"
-           class="text-sm text-gray-500 hover:text-gray-700">← Users</a>
+           class="text-sm text-gray-500 hover:text-gray-700">
+            ← Users
+        </a>
 
         <h2 class="text-xl font-semibold text-gray-800 mt-1">
-            Edit — {{ $user->first_name }} {{ $user->last_name }}
+            Edit - {{ $user->first_name }} {{ $user->last_name }}
         </h2>
     </div>
 
@@ -31,22 +33,14 @@
         </div>
     @endif
 
-
+    {{-- Update User Form --}}
     <form method="POST" action="{{ route('users.update', $user) }}"
           class="bg-white rounded-xl border border-gray-200 p-6 space-y-5">
-<<<<<<< HEAD
-
         @csrf
         @method('PUT')
 
         {{-- Name --}}
-        <div class="grid grid-cols-2 gap-4">
-=======
-        @csrf
-        @method('PUT')
-
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
->>>>>>> d1f4344 (Added link to immunization history and appointments and updated child management with search filtering)
             <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">
                     First name
@@ -92,14 +86,8 @@
             </label>
 
             <select name="role"
-<<<<<<< HEAD
-                class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm
-                       focus:outline-none focus:ring-2 focus:ring-brand-500">
-
-=======
                     class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm
                            focus:outline-none focus:ring-2 focus:ring-green-500">
->>>>>>> d1f4344 (Added link to immunization history and appointments and updated child management with search filtering)
                 <option value="healthcare_worker"
                     {{ old('role', $user->role) === 'healthcare_worker' ? 'selected' : '' }}>
                     Healthcare worker
@@ -109,7 +97,6 @@
                     {{ old('role', $user->role) === 'admin' ? 'selected' : '' }}>
                     Administrator
                 </option>
-
             </select>
         </div>
 
@@ -120,39 +107,19 @@
             </label>
 
             <select name="facility_id"
-<<<<<<< HEAD
-                class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm
-                       focus:outline-none focus:ring-2 focus:ring-brand-500">
-
-=======
                     class="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm
                            focus:outline-none focus:ring-2 focus:ring-green-500">
->>>>>>> d1f4344 (Added link to immunization history and appointments and updated child management with search filtering)
                 <option value="">Select facility</option>
 
                 @foreach($facilities as $facility)
                     <option value="{{ $facility->facility_id }}"
                         {{ old('facility_id', $user->facility_id) == $facility->facility_id ? 'selected' : '' }}>
-                        {{ $facility->name }} — {{ $facility->location }}
+                        {{ $facility->name }} - {{ $facility->location }}
                     </option>
                 @endforeach
-
             </select>
         </div>
 
-<<<<<<< HEAD
-        {{-- Password Reset Section --}}
-        <div class="border-t pt-5 mt-6">
-            <form method="POST" action="{{ route('users.resetPassword', $user) }}">
-                @csrf
-                <button type="submit"
-                    class="bg-brand-900 hover:bg-brand-700 text-white font-medium
-                       px-6 py-2 rounded-lg text-sm transition-colors">
-                    Send Password Reset Link
-                </button>
-            </form>
-
-=======
         {{-- Random Password Generator --}}
         <div class="rounded-xl border border-green-200 bg-green-50 p-5">
             <div class="flex items-start gap-3">
@@ -169,18 +136,9 @@
                         Generate random password and send to user email
                     </label>
 
-                    <p class="text-sm text-gray-500 mt-1">
-                        When selected, the system will create a secure temporary password,
-                        update this user’s account, and email the password to
-                        <span class="font-medium text-gray-700">{{ $user->email }}</span>.
-                    </p>
-
-                    <p class="text-xs text-gray-400 mt-2">
-                        Leave this unchecked if you do not want to change the user’s password.
-                    </p>
+                    
                 </div>
             </div>
->>>>>>> d1f4344 (Added link to immunization history and appointments and updated child management with search filtering)
         </div>
 
         {{-- Actions --}}
@@ -196,7 +154,10 @@
                 Cancel
             </a>
         </div>
-
     </form>
+
+    {{-- Password Reset Link Form --}}
+    
+
 </div>
 @endsection
