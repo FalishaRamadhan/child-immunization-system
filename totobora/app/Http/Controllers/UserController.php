@@ -10,21 +10,130 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Password as PasswordBroker;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules\Password;
-use Illuminate\Support\Facades\Password as PasswordBroker;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::with('facility')
-            ->where('role', 'healthcare_worker')
-            ->orderBy('is_active', 'desc')
-            ->orderBy('first_name')
-            ->get();
+        $query = User::with('facility');
 
-        return view('users.index', compact('users'));
+        /*
+        |--------------------------------------------------------------------------
+        | Keyword Search
+        |--------------------------------------------------------------------------
+        | Searches name, first name, last name, email, role, and facility details.
+        */
+        if ($request->filled('q')) {
+            $search = trim($request->q);
+
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', "%{$search}%")
+                    ->orWhere('first_name', 'like', "%{$search}%")
+                    ->orWhere('last_name', 'like', "%{$search}%")
+                    ->orWhere('email', 'like', "%{$search}%")
+                    ->orWhere('role', 'like', "%{$search}%")
+                    ->orWhereHas('facility', function ($facilityQuery) use ($search) {
+                        $facilityQuery->where('name', 'like', "%{$search}%")
+                            ->orWhere('location', 'like', "%{$search}%");
+                    });
+            });
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Category / Role Filter
+        |--------------------------------------------------------------------------
+        */
+        if ($request->filled('role')) {
+            $query->where('role', $request->role);
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Facility Filter
+        |--------------------------------------------------------------------------
+        */
+        if ($request->filled('facility_id')) {
+            $query->where('facility_id', $request->facility_id);
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Status Filter
+        |--------------------------------------------------------------------------
+        */
+        if ($request->filled('status')) {
+            if ($request->status === 'active') {
+                $query->where('is_active', true);
+            }
+
+            if ($request->status === 'inactive') {
+                $query->where('is_active', false);
+            }
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Date Filters
+        |--------------------------------------------------------------------------
+        | Filters users by registration date.
+        */
+        if ($request->filled('from_date')) {
+            $query->whereDate('created_at', '>=', $request->from_date);
+        }
+
+        if ($request->filled('to_date')) {
+            $query->whereDate('created_at', '<=', $request->to_date);
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Sorting
+        |--------------------------------------------------------------------------
+        | Supports latest, oldest, relevance, and name ordering.
+        */
+        match ($request->get('sort', 'latest')) {
+            'oldest' => $query->oldest(),
+
+            'name_asc' => $query
+                ->orderBy('first_name')
+                ->orderBy('last_name'),
+
+            'name_desc' => $query
+                ->orderByDesc('first_name')
+                ->orderByDesc('last_name'),
+
+            'relevance' => $request->filled('q')
+                ? $query->orderByRaw(
+                    "CASE
+                        WHEN email = ? THEN 1
+                        WHEN name LIKE ? THEN 2
+                        WHEN first_name LIKE ? THEN 3
+                        WHEN last_name LIKE ? THEN 4
+                        WHEN email LIKE ? THEN 5
+                        ELSE 6
+                    END",
+                    [
+                        $request->q,
+                        "{$request->q}%",
+                        "{$request->q}%",
+                        "{$request->q}%",
+                        "%{$request->q}%",
+                    ]
+                )
+                : $query->latest(),
+
+            default => $query->latest(),
+        };
+
+        $users = $query->paginate(10)->withQueryString();
+
+        $facilities = Facility::orderBy('name')->get();
+
+        return view('users.index', compact('users', 'facilities'));
     }
 
     public function create()
@@ -115,16 +224,16 @@ class UserController extends Controller
 
     public function sendResetLink(User $user)
     {
-        $status = Password::sendResetLink([
-            'email' => $user->email
+        $status = PasswordBroker::sendResetLink([
+            'email' => $user->email,
         ]);
 
-        if ($status === Password::RESET_LINK_SENT) {
+        if ($status === PasswordBroker::RESET_LINK_SENT) {
             return back()->with('success', 'Password reset link sent to ' . $user->email);
         }
 
         return back()->withErrors([
-            'email' => 'Unable to send reset link. Please try again.'
+            'email' => 'Unable to send reset link. Please try again.',
         ]);
     }
 
@@ -140,6 +249,11 @@ class UserController extends Controller
         $user->update(['is_active' => true]);
 
         return back()->with('success', $user->first_name . ' has been reactivated.');
+    }
+
+    public function activate(User $user)
+    {
+        return $this->reactivate($user);
     }
 
     private function generateSecurePassword(): string
