@@ -10,11 +10,10 @@ use App\Http\Controllers\GrowthController;
 use App\Http\Controllers\ReminderController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Auth\PasswordResetController;
 
 /*
-|--------------------------------------------------------------------------
-| PUBLIC ROUTES
-|--------------------------------------------------------------------------
+PUBLIC ROUTES
 */
 
 Route::get('/', function () {
@@ -30,18 +29,20 @@ Route::post('/login', [LoginController::class, 'login'])
 Route::post('/logout', [LoginController::class, 'logout'])
     ->name('logout');
 
+// Password reset
+Route::get('/forgot-password',        [PasswordResetController::class, 'showForgotForm'])->name('password.request');
+Route::post('/forgot-password',       [PasswordResetController::class, 'sendResetLink'])->name('password.email');
+Route::get('/reset-password/{token}', [PasswordResetController::class, 'showResetForm'])->name('password.reset');
+Route::post('/reset-password',        [PasswordResetController::class, 'resetPassword'])->name('password.update');
+
 /*
-|--------------------------------------------------------------------------
-| AUTHENTICATED ROUTES
-|--------------------------------------------------------------------------
+AUTHENTICATED ROUTES
 */
 
 Route::middleware('auth')->group(function () {
 
     /*
-    |--------------------------------------------------------------------------
-    | DASHBOARD
-    |--------------------------------------------------------------------------
+    DASHBOARD
     */
 
     Route::get('/dashboard', [DashboardController::class, 'index'])
