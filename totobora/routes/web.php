@@ -11,6 +11,7 @@ use App\Http\Controllers\ReminderController;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\PasswordResetController;
+use App\Http\Controllers\Auth\GoogleLoginController;
 
 /*
 PUBLIC ROUTES
@@ -19,6 +20,12 @@ PUBLIC ROUTES
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/auth/google', [GoogleLoginController::class, 'redirect'])
+    ->name('google.login');
+
+Route::get('/auth/google/callback', [GoogleLoginController::class, 'callback'])
+    ->name('google.callback');
 
 Route::get('/login', [LoginController::class, 'showLoginForm'])
     ->name('login');
@@ -142,7 +149,7 @@ Route::middleware('auth')->group(function () {
     |--------------------------------------------------------------------------
     */
 
-    Route::middleware('role:admin,healthcare_worker,caregiver')->group(function () {
+    Route::middleware('role:admin,healthcare_worker')->group(function () {
 
         /*
         |--------------------------------------------------------------------------
@@ -179,18 +186,14 @@ Route::middleware('auth')->group(function () {
     Route::middleware('role:admin')->group(function () {
 
         /*
-        |--------------------------------------------------------------------------
         | REPORTS
-        |--------------------------------------------------------------------------
         */
 
         Route::get('/reports', [ReportController::class, 'index'])
             ->name('reports.index');
 
         /*
-        |--------------------------------------------------------------------------
         | USER MANAGEMENT
-        |--------------------------------------------------------------------------
         */
 
         Route::get('/users', [UserController::class, 'index'])
@@ -213,6 +216,9 @@ Route::middleware('auth')->group(function () {
 
         Route::patch('/users/{user}/reactivate', [UserController::class, 'reactivate'])
             ->name('users.reactivate');
+
+        Route::post('/users/{user}/reset-password', [UserController::class, 'sendResetLink'])
+            ->name('users.resetPassword');
     });
 
 });

@@ -37,7 +37,13 @@ return [
 
     'africastalking' => [
         'username'  => env('AT_USERNAME', 'sandbox'),
-        'api_key'   => env('AT_API_KEY', 'atsk_be9daf4204c402a16239a2bc30da528eed151969d4ebecbcfe09ca02f2771c780d5f519a'),
+        'api_key'   => env('AT_API_KEY', 'atsk_3e345b0e88b650c01728ec835ce4aab164d0220490482d475c0e451437f7930832007c56'),
+    ],
+
+    'google' => [
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+        'redirect' => env('GOOGLE_REDIRECT_URI'),
     ],
 
 ];
